@@ -32,7 +32,14 @@ class MainWindow(QMainWindow):
         menubar_file = menubar.addMenu('文件')
         menubar_file.addAction(exit_action)
 
-        # 菜单栏-绘图
+        # 菜单栏-校准
+        adjust_action = QAction('&校准菜单', self)
+        adjust_action.triggered.connect(lambda: sys.exit())
+
+        menubar_adjust = menubar.addMenu('校准')
+        menubar_adjust.addAction(adjust_action)
+
+        # 菜单栏-曲线
         draw_node2_action = QAction('&节点2', self)
         draw_node3_action = QAction('&节点3', self)
         draw_node4_action = QAction('&节点4', self)
@@ -43,7 +50,7 @@ class MainWindow(QMainWindow):
         self.node4_drawwindow = DrawWindow()
         self.node5_drawwindow = DrawWindow()
 
-        menubar_draw = menubar.addMenu('绘图')
+        menubar_draw = menubar.addMenu('曲线')
         menubar_draw.addAction(draw_node2_action)
         menubar_draw.addAction(draw_node3_action)
         menubar_draw.addAction(draw_node4_action)
