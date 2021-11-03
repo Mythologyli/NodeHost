@@ -53,6 +53,17 @@ class SerialHandler(QThread):
                     print('数据不合理！')
                     continue
 
+                # 修正读数
+                config = json.loads(
+                    open('./config.json', 'r', encoding='utf-8').read())
+                humi += config['node' + str(seq)]['humi']
+                temp += config['node' + str(seq)]['temp']
+                light += config['node' + str(seq)]['light']
+
+                humi = round(humi, 2)
+                temp = round(temp, 2)
+                light = round(light, 2)
+
                 print(f"节点：{seq}    湿度：{humi}%    温度：{temp}°C    光照度：{light}lx")
 
                 # 写入 json 文件
